@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 require('./database/database');
 
 //routes
-
+var routes = require('./routes/routes');
+app.use('/customer', routes)
 //listen 
 app.listen(port, () => console.log(`app listening on port ${port}`));
 
