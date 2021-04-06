@@ -16,16 +16,28 @@ async function customers() {
           method: 'GET',
         })
         .then(res => {
-                const data = res.data.map(result => {
-                  console.log(result)
-                  return result
-                });
-                
+                return res
               })
                 .catch(err => {
                         console.log(err);
                       });
 };
+
+async function getCustomersByEmail(emailList) {
+  customers()
+    .then((results) => {
+        results.data.map((result) => {
+        
+        if(emailList.includes(result.email)){
+          customerList.push(result)
+        }
+      });
+      console.log(customerList);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 async function accounts() {
   return axios({
@@ -111,7 +123,7 @@ async function postEnrichedCustomers() {
                       });
 }
 
-module.exports = { customers, accounts, transactions, getEnrichedCustomers, postEnrichedCustomers}
+module.exports = { customers, getCustomersByEmail, accounts, transactions, getEnrichedCustomers, postEnrichedCustomers}
 
 
 

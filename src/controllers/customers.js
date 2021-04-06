@@ -1,4 +1,5 @@
-const { customers, transactions, postEnrichedCustomers, accounts } = require("../services/services.js");
+const { customers, transactions, postEnrichedCustomers, accounts, getCustomersByEmail } = require("../services/services.js");
+// const service = require("../services/services.js");
 
 // exports.getList = (req, res) => {
 //   customerEmailList(
@@ -8,34 +9,27 @@ const { customers, transactions, postEnrichedCustomers, accounts } = require("..
 
 getCustomers = (req, res) => {
   var emailList = req.body;
-  var customerList = {};
-  var customerListEnriched = {};
+  var customerList = getCustomersByEmail(emailList);
+  var customerListEnriched = [];
 
-  customers()
-    .then((res) => {
-      const data = res.data.map((result) => {
-        customerList = result.filter((value) => emailList.includes(value.email))
-        console.log(customerList)
-        return customerList;
-      });
-      //console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  
+  // var customer`list = getCustomersByEmail(emailLisit)
+  
 
-  transactions()
-  .then((res) => {
-    const data = res.data.map((result) => {
-      customerListEnriched = result.filter((value) => customerList.includes(value.account))
-      console.log(customerList)
-      return customerListEnriched;
-    });
-    //console.log(data);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+    return customerList;
+  };
+  // transactions()
+  // .then((res) => {
+  //   const data = res.data.map((result) => {
+  //     customerListEnriched = result.filter((value) => customerList.includes(value.account))
+  //     console.log(customerList)
+  //     return customerListEnriched;
+  //   });
+  //   //console.log(data);
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  // });
 
   createEnrichedCustomer = (req,res) => {
     var customerList = {};
@@ -84,7 +78,7 @@ getCustomers = (req, res) => {
 
       //accountsTransactionsList needs to be sent to mongodb
     }
-};
+
 
 //getCustomers()
 

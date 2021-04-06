@@ -5,8 +5,8 @@ const router = express.Router();
 router.get("/url", (req, res, next) => {
   res.json(["Tony","Lisa","Michael","Ginger","Food"]);
  });
-router.post('/customers', customers.getCustomers)
-router.get('/customers', customers.getCustomers)
+router.post('/customers', customers.getCustomers);
+//router.get('/customers', customers.getCustomers)
 
 module.exports = router;
 // module.exports = app => {
