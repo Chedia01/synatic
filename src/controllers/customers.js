@@ -1,5 +1,4 @@
-const { customers, transactions, postEnrichedCustomers, accounts, getCustomersByEmail } = require("../services/services.js");
-// const service = require("../services/services.js");
+const customersServices = require("../services/customers.service");
 
 // exports.getList = (req, res) => {
 //   customerEmailList(
@@ -9,13 +8,13 @@ const { customers, transactions, postEnrichedCustomers, accounts, getCustomersBy
 
 getCustomers = (req, res) => {
   var emailList = req.body;
-  var customerList = getCustomersByEmail(emailList);
+  var customerList = customersServices.getCustomersByEmail(emailList);
   var customerListEnriched = [];
 
   
   // var customer`list = getCustomersByEmail(emailLisit)
   
-
+    
     return customerList;
   };
   // transactions()
